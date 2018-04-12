@@ -26,7 +26,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/paper-dashboard@1.1.0/assets/css/demo.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/paper-dashboard@1.1.0/assets/css/paper-dashboard.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/paper-dashboard@1.1.0/assets/css/themify-icons.css"/>
-
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+    
 
 
     <!--  Fonts and icons     -->
@@ -169,7 +170,8 @@
                                         	<td>${row.name}</td>
                                         	<td>${row.surname} </td>
                                         	<td>${row.department }</td>
-                                            <td><a href="${pageContext.request.contextPath}/showEmployee?empID=${row.empID}"><i class = "ti-angle-right"></i></a></td>
+                                            <td><a href="${pageContext.request.contextPath}/showEmployee?empID=${row.empID}"><button class="btn btn-info btn-fill btn-sm">next</button>
+                                 </a></td>
                                         </tr>
                                         </c:forEach>
                                     </tbody>
@@ -222,7 +224,7 @@
    <script src = "https://cdn.jsdelivr.net/npm/paper-dashboard@1.1.0/assets/js/bootstrap-checkbox-radio.js"></script>
    <script src = "https://cdn.jsdelivr.net/npm/paper-dashboard@1.1.0/assets/js/bootstrap-notify.js"></script>
    <script src = "https://cdn.jsdelivr.net/npm/paper-dashboard@1.1.0/assets/js/paper-dashboard.js"></script>
-   
+   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
 
    <script type="text/javascript">
 	   
@@ -231,11 +233,14 @@
 		$("#_logout").submit();	
 	}
 	
+	$(document).ready( function () {
+	    $('#datasetEmp').DataTable();
+	} );
     
 	</script>
     
     <script>
-    (function($) {
+    /*(function($) {
 
     	$.fn.ddTableFilter = function(options) {
     	  options = $.extend(true, $.fn.ddTableFilter.defaultOptions, options);
@@ -359,9 +364,9 @@
     	  minOptions:2
     	}
 
-    	})(jQuery);   
+    	})(jQuery);*/  
     
-	$("#datasetEmp").ddTableFilter();
+	//$("#datasetEmp").ddTableFilter();
 
     </script>
 </html>
