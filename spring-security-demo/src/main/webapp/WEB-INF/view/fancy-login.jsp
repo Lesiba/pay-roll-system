@@ -123,7 +123,7 @@
 						<!-- Login/Submit Button -->
 						<div style="margin-top: 10px" class="form-group">						
 							<div class="col-sm-6 controls">
-								<button type="submit" class="btn btn-success">Login</button>
+								<button type="submit" class="btn btn-info btn-fill btn-wd">Login</button>
 							</div>
 						</div>
 

@@ -129,28 +129,17 @@
                      <div class="col-md-4">
                          <div class="form-group">
                               <label></label>
-                              <input type="text" class="form-control border-input" placeholder="Search employee">
-                         </div>
+                        </div>
                     </div> 
                     <div class="col-md-2">
                          <div class="form-group">
                                <label></label>
-                               <select class="form-control border-input" id="sel1">
-                                  <option value ="Admin">Admin</option>
-                                  <option value ="IT">I.T</option>
-                                  <option value ="Call Center">Call Center</option>
-                                  <option value ="Verification">Verification</option>
-                                  <option value ="HR">HR</option>
-                                  <option value ="Manager">Manager</option>
-                                  <option value ="Field Sales">Field Sales</option>
-                                  <option value ="other">Other</option>
-                              </select>
+                               
                          </div>
                     </div>                                        
                     <div class="col-md-2">
                          <div class="form-group">
                                <label></label><br/>
-                               <button type="submit" class="btn btn-info btn-fill btn-wd">Search</button>
                          </div>
                     </div> 
                </div>                                        
