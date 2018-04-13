@@ -117,19 +117,41 @@
          url = "jdbc:mysql://localhost/project_payroll"
          user = "root"  password = ""/>
         
-         <sql:query dataSource="${snapshot}" var="result">
-            SELECT empID,name,surname,department FROM hresources.employees;
-         </sql:query>  
- 
-  
+           
+      <button type="submit" class="btn btn-info btn-fill btn-wd">Back</button>
+       
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 col-md-7">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">{{ userName }} - {{ Campaign }}</h4>
-                            
+                                                   
+                                 <% int empId = Integer.parseInt(request.getParameter("empID")); %>
+                                 
+                                 <!-- script for title formation -->
+                                 <sql:query dataSource="${snapshot}" var="titleResult">
+                                   SELECT name,surname FROM hresources.employees WHERE empID= <%=empId%>;
+                                 </sql:query>
+                                 <!-- Displaying title from abc table  table -->
+                                 
+                                  <sql:query dataSource="${snapshot}" var="campaignResult">
+                                   SELECT * FROM abc_credit.users WHERE empID= <%=empId%>;
+                                  </sql:query>
+                                
+                                 <!-- Displaying title from hrresources table -->
+                                 <c:forEach var = "row" items = "${titleResult.rows}">
+                                     <h5 class="title">Name: <c:out value = "${row.name}"/>                                      
+                                     <c:out value = "${row.surname}"/></h5><br/>   
+                                     
+                                                                                                   
+                                </c:forEach>
+                                <!-- Query for abc_credit agents -->
+                                <c:forEach var = "row" items = "${campaignResult.rows}">
+                                     <h5 class="title">Department: ABC_Credit</h5>                                                                   
+                                </c:forEach>                                 
+                     
+                                
                             </div>
                             <div class="content">
                                 <form>
