@@ -1,17 +1,39 @@
 package com.project.payroll.pojo;
 
+import javax.validation.constraints.NotNull;
+
 public class Employee {
-   
+    
 	private int id;
+	
+	@NotNull(message="is required")
 	private int sales;
+	
+	@NotNull(message="is required")
 	private double basicSalary;
+	
+	@NotNull(message="is required")
 	private int unpaidDays;
+	
+	@NotNull(message="is required")
 	private double blud;
+	
+	@NotNull(message="is required")
 	private int girnLate;
+	
+	@NotNull(message="is required")
 	private double commission;
+	
+	@NotNull(message="is required")
 	private double grossPay;
+	
+	@NotNull(message="is required")
 	private double payePlus;
+	
+	@NotNull(message="is required")
 	private double uif;
+	
+	@NotNull(message="is required")
 	private double netSalary;
 	
 	

@@ -45,7 +45,12 @@
 	rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Muli:400,300'
 	rel='stylesheet' type='text/css'>
-
+<style>
+.error
+{
+   color:red;
+}
+</style>
 </head>
 <body>
 
@@ -172,21 +177,21 @@
 
 								</div>
 								<div class="content">
-									<form action="${pageContext.request.contextPath}/processEmp" 
-									      method= "POST">
+									<form:form action="${pageContext.request.contextPath}/processEmp" 
+									      method= "POST" modelAttribute="employee">
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label>Sales Per Agent</label> <input type="text"
+													<label>Sales Per Agent</label> <form:input type="text"
 														class="form-control border-input"
-														placeholder="Sales Per Agent">
+														path = "sales" name = "sales" placeholder="Sales Per Agent"/>
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label>Basic Salary</label> <input type="text"
-														class="form-control border-input"
-														placeholder="Basic Salary">
+													<label>Basic Salary</label> <form:input type="text"
+														name = "basicSalary" class="form-control border-input"
+														path="basicSalary" placeholder="Basic Salary"/>
 												</div>
 											</div>
 										</div>
@@ -194,57 +199,57 @@
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label>Unpaid Days</label> <input type="text"
-														class="form-control border-input"
-														placeholder="Unpaid Days">
+													<label>Unpaid Days</label> <form:input type="text"
+														name = "unpaidDays" class="form-control border-input"
+														path = "unpaidDays" placeholder="Unpaid Days"/>
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label>Basic Less Unpaid Days</label> <input type="text"
-														class="form-control border-input"
-														placeholder="Basic Less Unpaid Days">
+													<label>Basic Less Unpaid Days</label> <form:input type="text"
+														name = "blud" class="form-control border-input"
+														path = "blud" placeholder="Basic Less Unpaid Days"/>
 												</div>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label>GARNISHES + Late coming</label> <input type="text"
-														class="form-control border-input"
-														placeholder="GARNISHES + Late coming">
+													<label>GARNISHES + Late coming</label> <form:input type="text"
+														path = "girnLate" name = "garnLate" class="form-control border-input"
+														placeholder="GARNISHES + Late coming"/>
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label>COMMISSION</label> <input type="text"
-														class="form-control border-input" placeholder="COMMISSION">
+													<label>COMMISSION</label> <form:input type="text"
+														path = "commission" name = "commision" class="form-control border-input" placeholder="COMMISSION"/>
 												</div>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-3">
 												<div class="form-group">
-													<label>GROSS PAY</label> <input type="text"
-														class="form-control border-input" placeholder="GROSS PAY">
+													<label>GROSS PAY</label> <form:input type="text"
+														path = "grossPay" name = "grossPay" class="form-control border-input" placeholder="GROSS PAY"/>
 												</div>
 											</div>
 											<div class="col-md-3">
 												<div class="form-group">
-													<label>PAYE 6317+</label> <input type="text"
-														class="form-control border-input" placeholder="PAYE 6317+">
+													<label>PAYE 6317+</label> <form:input type="text"
+														path = "payePlus" name = "paye" class="form-control border-input" placeholder="PAYE 6317+"/>
 												</div>
 											</div>
 											<div class="col-md-3">
 												<div class="form-group">
-													<label>UIF</label> <input type="text"
-														class="form-control border-input" placeholder="UIF">
+													<label>UIF</label> <form:input type="text"
+														path = "uif" name = "uif" class="form-control border-input" placeholder="UIF"/>
 												</div>
 											</div>
 											<div class="col-md-3">
 												<div class="form-group">
-													<label>NET SALARY</label> <input type="text"
-														class="form-control border-input" placeholder="NET SALARY">
+													<label>NET SALARY</label> <form:input type="text"
+														path = "netSalary" name ="netSalary" class="form-control border-input" placeholder="NET SALARY"/>
 												</div>
 											</div>
 										</div>
@@ -260,7 +265,7 @@
 										</div>
 
 										<div class="clearfix"></div>
-									</form>
+									</form:form>
 								</div>
 							</div>
 						</div>
