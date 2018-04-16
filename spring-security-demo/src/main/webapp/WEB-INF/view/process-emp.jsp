@@ -48,15 +48,9 @@
 
 </head>
 <body>
-
-	<div class="wrapper">
+    <div class="wrapper">
 		<div class="sidebar" data-background-color="white"
 			data-active-color="danger">
-
-			<!--
-		Tip 1: you can change the color of the sidebar's background using: data-background-color="white | black"
-		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
-	-->
 
 			<div class="sidebar-wrapper">
 				<div class="logo">
@@ -133,141 +127,7 @@
 			</div>
 
 			<div class="content">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-lg-12 col-md-7">
-							<div class="card">
-								<div class="header">
-
-									<%
-										int empId = Integer.parseInt(request.getParameter("empID"));
-									%>
-
-									<!-- script for title formation -->
-									<sql:query dataSource="${snapshot}" var="titleResult">
-                                   SELECT name,surname FROM hresources.employees WHERE empID= <%=empId%>;
-                                 </sql:query>
-									<!-- Displaying title from abc table  table -->
-
-									<sql:query dataSource="${snapshot}" var="campaignResult">
-                                   SELECT * FROM abc_credit.users WHERE empID= <%=empId%>;
-                                  </sql:query>
-
-									<!-- Displaying title from hrresources table -->
-									<c:forEach var="row" items="${titleResult.rows}">
-										<h5 class="title">
-											Name:
-											<c:out value="${row.name}" />
-											<c:out value="${row.surname}" />
-										</h5>
-										<br />
-
-
-									</c:forEach>
-									<!-- Query for abc_credit agents -->
-									<c:forEach var="row" items="${campaignResult.rows}">
-										<h5 class="title">Department: ABC_Credit</h5>
-									</c:forEach>
-
-
-								</div>
-								<div class="content">
-									<form action="${pageContext.request.contextPath}/processEmp" 
-									      method= "POST">
-										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group">
-													<label>Sales Per Agent</label> <input type="text"
-														class="form-control border-input"
-														placeholder="Sales Per Agent">
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<label>Basic Salary</label> <input type="text"
-														class="form-control border-input"
-														placeholder="Basic Salary">
-												</div>
-											</div>
-										</div>
-
-										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group">
-													<label>Unpaid Days</label> <input type="text"
-														class="form-control border-input"
-														placeholder="Unpaid Days">
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<label>Basic Less Unpaid Days</label> <input type="text"
-														class="form-control border-input"
-														placeholder="Basic Less Unpaid Days">
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group">
-													<label>GARNISHES + Late coming</label> <input type="text"
-														class="form-control border-input"
-														placeholder="GARNISHES + Late coming">
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group">
-													<label>COMMISSION</label> <input type="text"
-														class="form-control border-input" placeholder="COMMISSION">
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-3">
-												<div class="form-group">
-													<label>GROSS PAY</label> <input type="text"
-														class="form-control border-input" placeholder="GROSS PAY">
-												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="form-group">
-													<label>PAYE 6317+</label> <input type="text"
-														class="form-control border-input" placeholder="PAYE 6317+">
-												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="form-group">
-													<label>UIF</label> <input type="text"
-														class="form-control border-input" placeholder="UIF">
-												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="form-group">
-													<label>NET SALARY</label> <input type="text"
-														class="form-control border-input" placeholder="NET SALARY">
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-3"></div>
-											<div class="col-md-3"></div>
-											<div class="col-md-3"></div>
-											<div class="col-md-3">
-												<div class="text-center" style="width: 12px;">
-													<button type="submit" class="btn btn-info btn-fill btn-wd">Next</button>
-												</div>
-											</div>
-										</div>
-
-										<div class="clearfix"></div>
-									</form>
-								</div>
-							</div>
-						</div>
-
-
-					</div>
-				</div>
+				
 			</div>
 			<footer class="footer">
 				<div class="container-fluid">
@@ -293,10 +153,7 @@
 
 		</div>
 	</div>
-
-
 </body>
-
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
@@ -313,5 +170,4 @@
 		$("#_logout").submit();
 	}
 </script>
-
 </html>

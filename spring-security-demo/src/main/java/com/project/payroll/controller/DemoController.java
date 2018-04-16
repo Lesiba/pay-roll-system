@@ -3,6 +3,7 @@ package com.project.payroll.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class DemoController {
@@ -47,4 +48,9 @@ public class DemoController {
 		return "employee";
 	}
 	
+	@RequestMapping(value = "/processEmp",method=RequestMethod.POST)
+	public String processEmp()
+	{		
+		return  "process-emp";
+	}
 }
