@@ -48,7 +48,7 @@
 
 </head>
 <body>
-    <div class="wrapper">
+	<div class="wrapper">
 		<div class="sidebar" data-background-color="white"
 			data-active-color="danger">
 
@@ -60,7 +60,7 @@
 					<li class="active"><a
 						href="${pageContext.request.contextPath}/home"> <i
 							class="ti-panel"></i>
-							<p>Dashboard</p>					
+							<p>Dashboard</p>
 					</a></li>
 				</ul>
 			</div>
@@ -127,8 +127,33 @@
 			</div>
 
 			<div class="content">
-				
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-lg-12 col-md-7">
+							<div class="card">
+								<div class="header">
+								    <h4 class="title">Payslip sample</h4>								   
+								</div>
+								<div class="content">
+                                <div class="footer">
+                                    <div class="chart-legend">
+                                        <i class="fa fa-circle text-info"></i> Open
+                                        <i class="fa fa-circle text-danger"></i> Bounce
+                                        <i class="fa fa-circle text-warning"></i> Unsubscribe
+                                    </div>
+                                    <hr>
+                                    <div class="stats">
+                                        <a href="${pageContext.request.contextPath}/generate-pdf"><button type="submit" class="btn btn-info btn-fill btn-wd">Save As</button></a>
+                                        <button type="submit" class="btn btn-info btn-fill btn-wd">Email</button>                                        
+                                    </div>
+                                </div>
+                            </div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
+
 			<footer class="footer">
 				<div class="container-fluid">
 					<nav class="pull-left">

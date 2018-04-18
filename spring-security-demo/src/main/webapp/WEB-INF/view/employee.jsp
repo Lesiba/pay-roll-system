@@ -185,6 +185,7 @@
 													<label>Sales Per Agent</label> <form:input type="text"
 														class="form-control border-input"
 														path = "sales" name = "sales" placeholder="Sales Per Agent"/>
+												 <form:errors path ="sales" cssClass="error"/>		
 												</div>
 											</div>
 											<div class="col-md-6">
@@ -192,6 +193,7 @@
 													<label>Basic Salary</label> <form:input type="text"
 														name = "basicSalary" class="form-control border-input"
 														path="basicSalary" placeholder="Basic Salary"/>
+												<form:errors path ="basicSalary" cssClass="error"/>																
 												</div>
 											</div>
 										</div>
@@ -202,6 +204,7 @@
 													<label>Unpaid Days</label> <form:input type="text"
 														name = "unpaidDays" class="form-control border-input"
 														path = "unpaidDays" placeholder="Unpaid Days"/>
+												    <form:errors path ="basicSalary" cssClass="error"/>																	
 												</div>
 											</div>
 											<div class="col-md-6">
@@ -209,6 +212,7 @@
 													<label>Basic Less Unpaid Days</label> <form:input type="text"
 														name = "blud" class="form-control border-input"
 														path = "blud" placeholder="Basic Less Unpaid Days"/>
+													<form:errors path ="blud" cssClass="error"/>																		
 												</div>
 											</div>
 										</div>
@@ -218,12 +222,15 @@
 													<label>GARNISHES + Late coming</label> <form:input type="text"
 														path = "girnLate" name = "garnLate" class="form-control border-input"
 														placeholder="GARNISHES + Late coming"/>
+												<form:errors path ="girnLate" cssClass="error"/>																				
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
 													<label>COMMISSION</label> <form:input type="text"
 														path = "commission" name = "commision" class="form-control border-input" placeholder="COMMISSION"/>
+												    
+												    <form:errors path ="commission" cssClass="error"/>																																   
 												</div>
 											</div>
 										</div>
@@ -232,24 +239,31 @@
 												<div class="form-group">
 													<label>GROSS PAY</label> <form:input type="text"
 														path = "grossPay" name = "grossPay" class="form-control border-input" placeholder="GROSS PAY"/>
+                                                    
+                                                    <form:errors path ="grossPay" cssClass="error"/>																																   												   
 												</div>
 											</div>
 											<div class="col-md-3">
 												<div class="form-group">
 													<label>PAYE 6317+</label> <form:input type="text"
 														path = "payePlus" name = "paye" class="form-control border-input" placeholder="PAYE 6317+"/>
+												    <form:errors path ="payePlus" cssClass="error"/>																																   												   
+												    
 												</div>
 											</div>
 											<div class="col-md-3">
 												<div class="form-group">
 													<label>UIF</label> <form:input type="text"
 														path = "uif" name = "uif" class="form-control border-input" placeholder="UIF"/>
+														
+												   <form:errors path ="uif" cssClass="error"/>																																   												   												    
 												</div>
 											</div>
 											<div class="col-md-3">
 												<div class="form-group">
 													<label>NET SALARY</label> <form:input type="text"
 														path = "netSalary" name ="netSalary" class="form-control border-input" placeholder="NET SALARY"/>
+												   	<form:errors path ="netSalary" cssClass="error"/>																																   												   												    												   
 												</div>
 											</div>
 										</div>
@@ -259,7 +273,7 @@
 											<div class="col-md-3"></div>
 											<div class="col-md-3">
 												<div class="text-center" style="width: 12px;">
-													<button type="submit" class="btn btn-info btn-fill btn-wd">Next</button>
+												    <input type="submit" class="btn btn-info btn-fill btn-wd" value = "Next"/>
 												</div>
 											</div>
 										</div>

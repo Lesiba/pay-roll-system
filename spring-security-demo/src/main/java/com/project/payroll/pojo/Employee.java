@@ -1,7 +1,9 @@
 package com.project.payroll.pojo;
 
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
+@Entity
 public class Employee {
     
 	private int id;
