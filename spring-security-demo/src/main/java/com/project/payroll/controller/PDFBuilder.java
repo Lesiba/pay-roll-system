@@ -23,17 +23,31 @@ public class PDFBuilder extends AbstractPdfView {
 
 	protected void buildPdfDocument(Map<String, Object> model, Document document, PdfWriter pdfWriter,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
-		Map<String, String> userData = (Map<String, String>) model.get("userData");
-
+		
+		response.setHeader("Content-Disposition", "attachment: filename=\"user_list.pdf\"");
+		
+		@SuppressWarnings({ "unused", "unchecked" })
+		List<Employee> list = (List<Employee>) model.get("command");
+	    
 		Table table = new Table(2);
-		table.addCell("Roll No");
-		table.addCell("Name");
-
-		for (Map.Entry<String, String> entry : userData.entrySet()) {
-			table.addCell(entry.getKey());
-			table.addCell(entry.getValue());
+		table.addCell("SALES");
+		table.addCell("COMMISSION");
+		
+		for(Employee emp : list)
+		{
+			table.addCell(String.valueOf(emp.getSales()));
+			table.addCell(String.valueOf(emp.getCommission()));
 		}
-		document.add(table);
+		
+		/*
+		 * Map<String, String> userData = (Map<String, String>) model.get("userData");
+		 * 
+		 * Table table = new Table(2); table.addCell("Roll No"); table.addCell("Name");
+		 * 
+		 * for (Map.Entry<String, String> entry : userData.entrySet()) {
+		 * table.addCell(entry.getKey()); table.addCell(entry.getValue()); }
+		 * document.add(table);
+		 */
 	}
 
 }

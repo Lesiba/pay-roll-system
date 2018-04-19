@@ -1,6 +1,5 @@
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
-
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -37,7 +36,156 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/paper-dashboard@1.1.0/assets/css/themify-icons.css" />
 
+<!-- styling for table -->
+<style>
+@import
+	url('https://fonts.googleapis.com/css?family=Roboto:200,300,400,600,700')
+	;
 
+* {
+	font-family: 'Roboto', sans-serif;
+	font-size: 12px;
+	color: #444;
+}
+
+#payslip {
+	width: calc(8.5in - 80px);
+	height: calc(11in - 60px);
+	background: #fff;
+	padding: 30px 40px;
+}
+
+#title {
+	margin-bottom: 20px;
+	font-size: 38px;
+	font-weight: 600;
+}
+
+#scope {
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	padding: 7px 0 4px 0;
+	display: flex;
+	justify-content: space-around;
+}
+
+#scope>.scope-entry {
+	text-align: center;
+}
+
+#scope>.scope-entry>.value {
+	font-size: 14px;
+	font-weight: 700;
+}
+
+.content {
+	display: flex;
+	border-bottom: 1px solid #ccc;
+}
+
+.content .left-panel {
+	border-right: 1px solid #ccc;
+	min-width: 200px;
+	padding: 20px 16px 0 0;
+}
+
+.content .right-panel {
+	width: 100%;
+	padding: 10px 0 0 16px;
+}
+
+#employee {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+#employee #name {
+	font-size: 15px;
+	font-weight: 700;
+}
+
+#employee #email {
+	font-size: 11px;
+	font-weight: 300;
+}
+
+.details, .contributions, .ytd, .gross {
+	margin-bottom: 20px;
+}
+
+.details .entry, .contributions .entry, .ytd .entry {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 6px;
+}
+
+.details .entry .value, .contributions .entry .value, .ytd .entry .value
+	{
+	font-weight: 700;
+	max-width: 130px;
+	text-align: right;
+}
+
+.gross .entry .value {
+	font-weight: 700;
+	text-align: right;
+	font-size: 16px;
+}
+
+.contributions .title, .ytd .title, .gross .title {
+	font-size: 15px;
+	font-weight: 700;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 4px;
+	margin-bottom: 6px;
+}
+
+.content .right-panel .details {
+	width: 100%;
+}
+
+.content .right-panel .details .entry {
+	display: flex;
+	padding: 0 10px;
+	margin: 6px 0;
+}
+
+.content .right-panel .details .label {
+	font-weight: 700;
+	width: 120px;
+}
+
+.content .right-panel .details .detail {
+	font-weight: 600;
+	width: 130px;
+}
+
+.content .right-panel .details .rate {
+	font-weight: 400;
+	width: 80px;
+	font-style: italic;
+	letter-spacing: 1px;
+}
+
+.content .right-panel .details .amount {
+	text-align: right;
+	font-weight: 700;
+	width: 90px;
+}
+
+.content .right-panel .details .net_pay div, .content .right-panel .details .nti div
+	{
+	font-weight: 600;
+	font-size: 12px;
+}
+
+.content .right-panel .details .net_pay, .content .right-panel .details .nti
+	{
+	padding: 3px 0 2px 0;
+	margin-bottom: 10px;
+	background: rgba(0, 0, 0, 0.04);
+}
+</style>
 
 <!--  Fonts and icons     -->
 <link
@@ -131,53 +279,123 @@
 					<div class="row">
 						<div class="col-lg-12 col-md-7">
 							<div class="card">
-								<div class="header">
-								    <h4 class="title">Payslip sample</h4>								   
+								<div id="payslip">
+									<div id="title">Payslip</div>
+									<div id="scope">
+										<div class="scope-entry">
+											<div class="title">Earnings</div>
+										</div>
+										<div class="scope-entry">
+											<div class="title">Deductions</div>
+										</div>
+									</div>
+									<div class="details">
+										<div class="content">
+											<div class="left-panel">
+												<div class="entry">
+													<div class="value">Basic salary:</div>
+													<div class="value">2500,00</div>
+												</div>
+												<div class="entry">
+													<div class="value">Commission:</div>
+													<div class="value">992,35</div>
+												</div>
+												<div class="entry">
+													<div class="value">Stipend:</div>
+													<div class="value">0</div>
+												</div>
+												<div class="entry"></div>
+												<div class="entry"></div>
+												<div class="entry"></div>
+												<div class="entry"></div>
+												<div class="entry"></div>
+												<div class="entry"></div>
+												<div class="entry"></div>
+												<div class="entry"></div>
+												<div class="entry"></div>
+												<div class="entry">
+													<div class="value">Total Earnings:</div>
+													<div class="value">3 492,35</div>
+												</div>
+											</div>
+											<div class="right-panel">
+												<div class="details">
+
+													<div class="entry">
+														<div class="value">P.A.Y.E.</div>
+														<div class="value">0</div>
+													</div>
+													<div class="entry">
+														<div class="value">U.I.F:</div>
+														<div class="value">25,00</div>
+													</div>
+													<div class="entry">
+														<div class="value">Unpaid Leave:</div>
+														<div class="value">113,64</div>
+													</div>
+													<div class="entry"></div>
+													<div class="entry"></div>
+													<div class="entry"></div>
+													<div class="entry"></div>
+													<div class="entry"></div>
+													<div class="entry"></div>
+													<div class="entry"></div>
+													<div class="entry"></div>
+													<div class="entry"></div>
+													<div class="entry"></div>
+													<div class="entry">
+														<div class="value">Total Deduction:</div>
+														<div class="value">138,64</div>
+													</div>
+												</div>
+												
+											</div>
+
+										</div>
+										<div id="editor"></div>
+
+										
+									</div>
+									
+									<div class="content">
+											<div class="footer">
+
+												<div class="stats">
+													<button type="submit" class="btn btn-info btn-fill btn-wd"
+														id="cmd">Save As</button>
+													<button type="submit" class="btn btn-info btn-fill btn-wd">Email</button>
+												</div>
+											</div>
+										</div>
 								</div>
-								<div class="content">
-                                <div class="footer">
-                                    <div class="chart-legend">
-                                        <i class="fa fa-circle text-info"></i> Open
-                                        <i class="fa fa-circle text-danger"></i> Bounce
-                                        <i class="fa fa-circle text-warning"></i> Unsubscribe
-                                    </div>
-                                    <hr>
-                                    <div class="stats">
-                                        <a href="${pageContext.request.contextPath}/generate-pdf"><button type="submit" class="btn btn-info btn-fill btn-wd">Save As</button></a>
-                                        <button type="submit" class="btn btn-info btn-fill btn-wd">Email</button>                                        
-                                    </div>
-                                </div>
-                            </div>
 							</div>
 						</div>
 					</div>
+
+					<footer class="footer">
+						<div class="container-fluid">
+							<nav class="pull-left">
+								<ul>
+
+									<li><a href="http://www.creative-tim.com"> ICON AF </a></li>
+									<li><a href="http://blog.creative-tim.com"> Blog </a></li>
+									<li><a href="http://www.creative-tim.com/license">
+											Licenses </a></li>
+								</ul>
+							</nav>
+							<div class="copyright pull-right">
+								&copy;
+								<script>
+									document.write(new Date().getFullYear())
+								</script>
+								, made with <i class="fa fa-heart heart"></i> by <a
+									href="http://www.creative-tim.com">Creative Tim</a>
+							</div>
+						</div>
+					</footer>
+
 				</div>
 			</div>
-
-			<footer class="footer">
-				<div class="container-fluid">
-					<nav class="pull-left">
-						<ul>
-
-							<li><a href="http://www.creative-tim.com"> ICON AF </a></li>
-							<li><a href="http://blog.creative-tim.com"> Blog </a></li>
-							<li><a href="http://www.creative-tim.com/license">
-									Licenses </a></li>
-						</ul>
-					</nav>
-					<div class="copyright pull-right">
-						&copy;
-						<script>
-							document.write(new Date().getFullYear())
-						</script>
-						, made with <i class="fa fa-heart heart"></i> by <a
-							href="http://www.creative-tim.com">Creative Tim</a>
-					</div>
-				</div>
-			</footer>
-
-		</div>
-	</div>
 </body>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -195,4 +413,27 @@
 		$("#_logout").submit();
 	}
 </script>
+<script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
+<script>
+	$(document).ready(function() {
+		var doc = new jsPDF();
+		var specialElementHandlers = {
+			'#editor' : function(element, renderer) {
+				return true;
+			}
+		};
+
+		$('#cmd').click(function() {
+			doc.fromHTML($('#content').html(), 15, 15, {
+				'width' : 170,
+				'elementHandlers' : specialElementHandlers
+			});
+			doc.save('sample-file.pdf');
+		});
+	});
+</script>
+
+
 </html>

@@ -22,7 +22,7 @@ import org.springframework.web.servlet.mvc.AbstractController;
 import com.project.payroll.pojo.Employee;
 
 @Controller
-public class DemoController extends AbstractController {
+public class DemoController {
 
 	// page to go to when login is successful
 
@@ -71,72 +71,28 @@ public class DemoController extends AbstractController {
 			return "process-emp";
 		}
 	}
-
-	/*
-	 * @RequestMapping(value = "/generate-pdf", method = RequestMethod.GET) public
-	 * ModelAndView generatePDF() {
-	 * 
-	 * System.out.println("entering generate pdf method.....");
-	 * 
-	 * List<Employee> listEmployee = new ArrayList<Employee>();
-	 * 
-	 * Employee emp = new Employee();
-	 * 
-	 * emp.setSales(100); emp.setBasicSalary(2500);
-	 * 
-	 * listEmployee.add(emp);
-	 * 
-	 * ModelAndView modelAndView = new ModelAndView("generate-pdf", "command",
-	 * listEmployee);
-	 * 
-	 * return modelAndView; }
-	 */
-
-	/*
-	 * @RequestMapping(value = "/generate-pdf", method = RequestMethod.GET)
-	 * 
-	 * @Override protected ModelAndView handleRequestInternal(HttpServletRequest
-	 * request, HttpServletResponse response) throws Exception {
-	 * System.out.println("entering generate pdf method.....");
-	 * 
-	 * List<Employee> listEmployee = new ArrayList<Employee>();
-	 * 
-	 * Employee emp = new Employee();
-	 * 
-	 * emp.setSales(100); emp.setBasicSalary(2500);
-	 * 
-	 * listEmployee.add(emp);
-	 * 
-	 * ModelAndView modelAndView = new ModelAndView("generate-pdf", "command",
-	 * listEmployee);
-	 * 
-	 * return modelAndView; }
-	 */
-    
-	@RequestMapping(value = "/generate-pdf", method = RequestMethod.GET)
-	@Override
-	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		// user data
-		Map<String, String> userData = new HashMap<String, String>();
-		userData.put("1", "Mahesh");
-		userData.put("2", "Suresh");
-		userData.put("3", "Ramesh");
-		userData.put("4", "Naresh");
-		return new ModelAndView("generate-pdf", "userData", userData);
-	}
-
-	/*
-	 * @RequestMapping(value = "/generate-pdf", method = RequestMethod.GET) public
-	 * ModelAndView pdfTest() { System.out.println("Calling generatePdf()...");
-	 * 
-	 * Employee employee = new Employee(); employee.setSales(100);
-	 * employee.setCommission(60.00);
-	 * 
-	 * ModelAndView modelAndView = new ModelAndView("generate-pdf",
-	 * "command",employee);
-	 * 
-	 * return modelAndView; }
-	 */
+   
+   
+   @RequestMapping(value = "/generate-pdf", method = RequestMethod.GET)
+   public ModelAndView empListReport(HttpServletRequest req, HttpServletResponse res) 
+   {
+	   String typeReport = req.getParameter("type");
+	   
+	   List<Employee> list = new ArrayList<Employee>();
+	   
+	   Employee emp = new Employee();
+	   
+	   emp.setSales(100);
+	   emp.setCommission(1200);
+	   
+	   list.add(emp);
+	   
+	   if(typeReport != null && typeReport.equals("pdf"))
+	   {
+		   //new PDFBuilder();
+		   return new ModelAndView("generate-pdf","command",list);
+	   }
+	   return new ModelAndView("","generate-pdf",list);
+   }
 
 }
