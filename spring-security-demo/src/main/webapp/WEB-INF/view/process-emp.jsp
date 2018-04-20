@@ -67,6 +67,7 @@
 	padding: 7px 0 4px 0;
 	display: flex;
 	justify-content: space-around;
+	background-color: #E0E0E0;
 }
 
 #scope>.scope-entry {
@@ -179,6 +180,10 @@
 	font-size: 12px;
 }
 
+.net_pay {
+	background-color: #E0E0E0;
+}
+
 .content .right-panel .details .net_pay, .content .right-panel .details .nti
 	{
 	padding: 3px 0 2px 0;
@@ -279,8 +284,61 @@
 					<div class="row">
 						<div class="col-lg-12 col-md-7">
 							<div class="card">
+
 								<div id="payslip">
-									<div id="title">Payslip</div>
+									<div id="title">Payslip - Icon Africa</div>
+									<div id="scope">
+										<div class="scope-entry left-panel">
+											<div class="title">Company Name</div>
+											<div class="title">Company Address</div>
+											<div class="title">Company Contacts</div>
+										</div>
+										<div class="scope-entry">
+											<div class="value">IconAF PTY LTD</div>
+											<div class="value">296 KENT AVENUE, RANDBURG,2194</div>
+											<div class="value">Tel 011 781 4154 info@iconaf.com</div>
+										</div>
+									</div>
+									<div class="details">
+										<div class="content">
+											<div class="left-panel">
+												<div class="entry">
+													<div class="value">Employee Name:</div>
+													<div class="value">Alice Modiba</div>
+												</div>
+												<div class="entry">
+													<div class="value">Employee Address:</div>
+													<div class="value">145 CRESTHILL MANSIONS, 15 PETERSON STREET ,HILLBROW, 2001</div>
+												</div>
+												<div class="entry">
+													<div class="value">Employee ID:</div>
+													<div class="value">900505-6411-085</div>
+												</div>
+												<div class="entry">
+													<div class="value">Employee tax no:</div>
+													<div class="value">-</div>
+												</div>
+											</div>
+											<div class="right-panel">
+												<div class="entry">
+													<div class="value">Engagement Date:</div>
+													<div class="value">2017/09/11</div>
+												</div>
+												<div class="entry">
+													<div class="value">Pay Period:</div>
+													<div class="value">30-Nov-17</div>
+												</div>
+												<div class="entry">
+													<div class="value">Designation:</div>
+													<div class="value">Sales Agent</div>
+												</div>
+												<div class="entry">
+													<div class="value">Employee Number:</div>
+													<div class="value">70797</div>
+												</div>
+											</div>
+										</div>
+									</div>
 									<div id="scope">
 										<div class="scope-entry">
 											<div class="title">Earnings</div>
@@ -348,16 +406,22 @@
 														<div class="value">138,64</div>
 													</div>
 												</div>
-												
+
 											</div>
 
-										</div>
-										<div id="editor"></div>
 
-										
-									</div>
-									
-									<div class="content">
+											<!-- div id="editor"></div --->
+
+
+										</div>
+
+										<div class="net_pay">
+											<div class="entry">
+												<div class="label" style="color: black;">NET Salary</div>
+												<div class="value">69,656.21</div>
+											</div>
+										</div>
+										<div class="content">
 											<div class="footer">
 
 												<div class="stats">
@@ -367,35 +431,36 @@
 												</div>
 											</div>
 										</div>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 
-					<footer class="footer">
-						<div class="container-fluid">
-							<nav class="pull-left">
-								<ul>
+						<footer class="footer">
+							<div class="container-fluid">
+								<nav class="pull-left">
+									<ul>
 
-									<li><a href="http://www.creative-tim.com"> ICON AF </a></li>
-									<li><a href="http://blog.creative-tim.com"> Blog </a></li>
-									<li><a href="http://www.creative-tim.com/license">
-											Licenses </a></li>
-								</ul>
-							</nav>
-							<div class="copyright pull-right">
-								&copy;
-								<script>
-									document.write(new Date().getFullYear())
-								</script>
-								, made with <i class="fa fa-heart heart"></i> by <a
-									href="http://www.creative-tim.com">Creative Tim</a>
+										<li><a href="http://www.creative-tim.com"> ICON AF </a></li>
+										<li><a href="http://blog.creative-tim.com"> Blog </a></li>
+										<li><a href="http://www.creative-tim.com/license">
+												Licenses </a></li>
+									</ul>
+								</nav>
+								<div class="copyright pull-right">
+									&copy;
+									<script>
+										document
+												.write(new Date().getFullYear())
+									</script>
+									, made with <i class="fa fa-heart heart"></i> by <a
+										href="http://www.creative-tim.com">Creative Tim</a>
+								</div>
 							</div>
-						</div>
-					</footer>
+						</footer>
 
+					</div>
 				</div>
-			</div>
 </body>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
