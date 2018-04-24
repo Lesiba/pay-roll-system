@@ -5,40 +5,42 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class Employee {
-    
+
 	private int id;
+    
+	private String campaign;
 	
-	@NotNull(message="is required")
+	
+	@NotNull(message = "is required")
 	private int sales;
-	
-	@NotNull(message="is required")
+
+	@NotNull(message = "is required")
 	private double basicSalary;
-	
-	@NotNull(message="is required")
+
+	@NotNull(message = "is required")
 	private int unpaidDays;
-	
-	@NotNull(message="is required")
+
+	@NotNull(message = "is required")
 	private double blud;
-	
-	@NotNull(message="is required")
+
+	@NotNull(message = "is required")
 	private int girnLate;
-	
-	@NotNull(message="is required")
+
+	@NotNull(message = "is required")
 	private double commission;
-	
-	@NotNull(message="is required")
+
+	@NotNull(message = "is required")
 	private double grossPay;
-	
-	@NotNull(message="is required")
+
+	@NotNull(message = "is required")
 	private double payePlus;
-	
-	@NotNull(message="is required")
+
+	@NotNull(message = "is required")
 	private double uif;
-	
-	@NotNull(message="is required")
+
+	@NotNull(message = "is required")
 	private double netSalary;
-	
-	
+    
 	public Employee(int sales, double basicSalary, int unpaidDays, double blud, int girnLate, double commission,
 			double grossPay, double payePlus, double uif, double netSalary) {
 		this.sales = sales;
@@ -53,7 +55,8 @@ public class Employee {
 		this.netSalary = netSalary;
 	}
 
-	public Employee() {}
+	public Employee() {
+	}
 
 	public int getId() {
 		return id;
@@ -143,11 +146,19 @@ public class Employee {
 		this.netSalary = netSalary;
 	}
 
+	public String getCampaign() {
+		return campaign;
+	}
+
+	public void setCampaign(String campaign) {
+		this.campaign = campaign;
+	}
+
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", sales=" + sales + ", basicSalary=" + basicSalary + ", unpaidDays=" + unpaidDays
 				+ ", blud=" + blud + ", girnLate=" + girnLate + ", commission=" + commission + ", grossPay=" + grossPay
 				+ ", payePlus=" + payePlus + ", uif=" + uif + ", netSalary=" + netSalary + "]";
 	}
-	
+
 }

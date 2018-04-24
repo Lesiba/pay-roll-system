@@ -46,9 +46,8 @@
 <link href='https://fonts.googleapis.com/css?family=Muli:400,300'
 	rel='stylesheet' type='text/css'>
 <style>
-.error
-{
-   color:red;
+.error {
+	color: red;
 }
 </style>
 </head>
@@ -71,7 +70,7 @@
 					<li class="active"><a
 						href="${pageContext.request.contextPath}/home"> <i
 							class="ti-panel"></i>
-							<p>Dashboard</p>					
+							<p>Dashboard</p>
 					</a></li>
 				</ul>
 			</div>
@@ -177,23 +176,33 @@
 
 								</div>
 								<div class="content">
-									<form:form action="${pageContext.request.contextPath}/processEmp" 
-									      method= "POST" modelAttribute="employee">
+									<form:form
+										action="${pageContext.request.contextPath}/processEmp"
+										method="POST" modelAttribute="employee">
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label>Sales Per Agent</label> <form:input type="text"
-														class="form-control border-input"
-														path = "sales" name = "sales" placeholder="Sales Per Agent"/>
-												 <form:errors path ="sales" cssClass="error"/>		
+													<label>Enter Sales Per Agent</label> <input type="text"
+														class="form-control border-input" id="_sales" name="sales"
+														onkeyup="fillSales()" placeholder="Sales Per Agent" />
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label>Basic Salary</label> <form:input type="text"
-														name = "basicSalary" class="form-control border-input"
-														path="basicSalary" placeholder="Basic Salary"/>
-												<form:errors path ="basicSalary" cssClass="error"/>																
+													<label>Select Campaign</label>
+													<form:select path="campaign" id="selectCampaign"
+														class="form-control border-input" onChange = "doCalculations()">
+														<form:option value="0" label="--- Select Campaign ---" />
+														<form:option value="Mzansi_Money" label="Mzansi Money" />
+														<form:option value="Discovery" label="Discovery" />
+														<form:option value="Santam" label="Santam" />
+														<form:option value="King_Price" label="King Price" />
+														<form:option value="Cfl" label="Cover for life" />
+														<form:option value="CarTrack" label="Car Track" />
+														<form:option value="ImaliSave" label="Imali save" />
+
+													</form:select>
+													<form:errors path="basicSalary" cssClass="error" />
 												</div>
 											</div>
 										</div>
@@ -201,69 +210,99 @@
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label>Unpaid Days</label> <form:input type="text"
-														name = "unpaidDays" class="form-control border-input"
-														path = "unpaidDays" placeholder="Unpaid Days"/>
-												    <form:errors path ="basicSalary" cssClass="error"/>																	
+													<label>Sales Per Agent</label>
+													<form:input type="text" class="form-control border-input"
+														id = "sal" path="sales" name="sales" placeholder="Sales Per Agent"/>
+													<form:errors path="sales" cssClass="error"/>
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label>Basic Less Unpaid Days</label> <form:input type="text"
-														name = "blud" class="form-control border-input"
-														path = "blud" placeholder="Basic Less Unpaid Days"/>
-													<form:errors path ="blud" cssClass="error"/>																		
+													<label>Basic Salary</label>
+													<form:input type="text" name="basicSalary"
+														id = "basic_salary" class="form-control border-input" path="basicSalary"
+														placeholder="Basic Salary" />
+													<form:errors path="basicSalary" cssClass="error" />
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Unpaid Days</label>
+													<form:input type="text" name="unpaidDays"
+														class="form-control border-input" path="unpaidDays"
+														placeholder="Unpaid Days" />
+													<form:errors path="basicSalary" cssClass="error" />
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label>Basic Less Unpaid Days</label>
+													<form:input type="text" name="blud" id="basic_salary"
+														class="form-control border-input" path="blud"
+														placeholder="Basic Less Unpaid Days" />
+													<form:errors path="blud" cssClass="error" />
 												</div>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label>GARNISHES + Late coming</label> <form:input type="text"
-														path = "girnLate" name = "garnLate" class="form-control border-input"
-														placeholder="GARNISHES + Late coming"/>
-												<form:errors path ="girnLate" cssClass="error"/>																				
+													<label>GARNISHES + Late coming</label>
+													<form:input type="text" path="girnLate" name="garnLate"
+														class="form-control border-input"
+														placeholder="GARNISHES + Late coming" />
+													<form:errors path="girnLate" cssClass="error" />
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label>COMMISSION</label> <form:input type="text"
-														path = "commission" name = "commision" class="form-control border-input" placeholder="COMMISSION"/>
-												    
-												    <form:errors path ="commission" cssClass="error"/>																																   
+													<label>COMMISSION</label>
+													<form:input type="text" path="commission" name="commision"
+														id = "commission" class="form-control border-input" placeholder="COMMISSION" />
+
+													<form:errors path="commission" cssClass="error" />
 												</div>
 											</div>
 										</div>
 										<div class="row">
 											<div class="col-md-3">
 												<div class="form-group">
-													<label>GROSS PAY</label> <form:input type="text"
-														path = "grossPay" name = "grossPay" class="form-control border-input" placeholder="GROSS PAY"/>
-                                                    
-                                                    <form:errors path ="grossPay" cssClass="error"/>																																   												   
+													<label>GROSS PAY</label>
+													<form:input type="text" path="grossPay" name="grossPay"
+														class="form-control border-input" placeholder="GROSS PAY" />
+
+													<form:errors path="grossPay" cssClass="error" />
+												</div>
+											</div>
+											<input type="hidden" name="empId" value="<%=empId%>">
+
+											<div class="col-md-3">
+												<div class="form-group">
+													<label>PAYE 6317+</label>
+													<form:input type="text" path="payePlus" name="paye"
+														class="form-control border-input" placeholder="PAYE 6317+" />
+													<form:errors path="payePlus" cssClass="error" />
+
 												</div>
 											</div>
 											<div class="col-md-3">
 												<div class="form-group">
-													<label>PAYE 6317+</label> <form:input type="text"
-														path = "payePlus" name = "paye" class="form-control border-input" placeholder="PAYE 6317+"/>
-												    <form:errors path ="payePlus" cssClass="error"/>																																   												   
-												    
+													<label>UIF</label>
+													<form:input type="text" path="uif" name="uif"
+														class="form-control border-input" placeholder="UIF" />
+
+													<form:errors path="uif" cssClass="error" />
 												</div>
 											</div>
 											<div class="col-md-3">
 												<div class="form-group">
-													<label>UIF</label> <form:input type="text"
-														path = "uif" name = "uif" class="form-control border-input" placeholder="UIF"/>
-														
-												   <form:errors path ="uif" cssClass="error"/>																																   												   												    
-												</div>
-											</div>
-											<div class="col-md-3">
-												<div class="form-group">
-													<label>NET SALARY</label> <form:input type="text"
-														path = "netSalary" name ="netSalary" class="form-control border-input" placeholder="NET SALARY"/>
-												   	<form:errors path ="netSalary" cssClass="error"/>																																   												   												    												   
+													<label>NET SALARY</label>
+													<form:input type="text" path="netSalary" name="netSalary"
+														class="form-control border-input" placeholder="NET SALARY" />
+													<form:errors path="netSalary" cssClass="error" />
 												</div>
 											</div>
 										</div>
@@ -273,7 +312,8 @@
 											<div class="col-md-3"></div>
 											<div class="col-md-3">
 												<div class="text-center" style="width: 12px;">
-												    <input type="submit" class="btn btn-info btn-fill btn-wd" value = "Next"/>
+													<input type="submit" class="btn btn-info btn-fill btn-wd"
+														value="Next" />
 												</div>
 											</div>
 										</div>
@@ -316,6 +356,7 @@
 
 </body>
 
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
@@ -331,6 +372,228 @@
 	function logout() {
 		$("#_logout").submit();
 	}
-</script>
+	
+	function fillSales(sales){
+		$( "#sal" ).val($( "#_sales" ).val());
+		document.getElementById("sal").disabled = true;
+	}
+	
+	
+	function doCalculations()
+	{
+	    var x = document.getElementById("selectCampaign").value;
+	    var sales;
+	    var basic_salary;
+	    var commission;
+	    
+	    var per1 = 0.05 * 89;
+	    var per2 = 0.15 * 89;
+	    var per3 = 0.25 * 89;
+	    
+	    var for200;
+	    
+	    //campaign selected.
+	    console.log(x);
+	    
+	    if(x == "King_Price")
+	    {
+	        console.log("king price selected..");	
+	    }
+	    
+	    if(x == "CarTrack")
+	    {
+	    	sales = document.getElementById("_sales").value;
+	        if(sales == "")
+	    	{
+	    		alert("Enter number of sales.");
+	    		$( "#_sales" ).focus();
+	    	}	
+	    }
+        if(x == 'Mzansi_Money')
+        {
+        	sales = document.getElementById("_sales").value;
+        	if(sales == "")
+        	{
+        		alert("Enter number of sales.");
+        		$( "#_sales" ).focus();       
+        	}
+        	if(sales == 181)
+        	{
+        		basic_salary = parseFloat('2500').toFixed(2);
+        		console.log("qualifies for basic salary - " + basic_salary);
+        		$( "#basic_salary" ).val(basic_salary);
 
+        	}
+        	if(sales < 181)
+        	{
+        		commission = parseFloat(sales * 10).toFixed(2);
+        		console.log("do not qualify for basic salary - " + commission);
+        		$( "#commission" ).val(commission);
+
+        	}
+        	if((sales >= 200) && (sales < 300))
+        	{
+        		basic_salary = parseFloat('2500').toFixed(2);
+        		commission =  parseFloat(per1 * sales).toFixed(2);
+        		$( "#commission" ).val(commission);
+        		$( "#basic_salary" ).val(basic_salary);
+
+        		console.log("commission for 200 sales - " + commission);
+        	}
+        	if((sales >= 300) && (sales < 400))
+        	{
+        		basic_salary = parseFloat('2500').toFixed(2);
+        		commission =  parseFloat(per2 * sales).toFixed(2);
+        		
+        		$( "#commission" ).val(commission);
+        		$( "#basic_salary" ).val(basic_salary);
+        		console.log("commission for 300 sales - " + commission);
+        	}
+        	if(sales >= 400)
+        	{
+        		basic_salary = parseFloat('2500').toFixed(2);
+        		commission =  parseFloat(per3 * sales).toFixed(2);
+        		$( "#commission" ).val(commission);
+        		$( "#basic_salary" ).val(basic_salary);
+        		console.log("commission for 400 sales - " + commission);        		
+        	}
+        }
+        
+        if(x == 'Discovery')
+        {
+        	basic_salary = parseFloat('2500').toFixed(2);
+        	sales = document.getElementById("_sales").value;
+        	if(sales == "")
+        	{
+        		alert("Enter number of sales.");
+        		$( "#_sales" ).focus();
+        	}
+        	if((sales >= '15') && (sales < '25'))
+        	{
+        		console.log('15 sales and probation - ' + basic_salary);	
+        	}
+        	if((sales >= '25') && (sales < '26'))
+        	{
+        		console.log('25 sales and not on probation - ' + basic_salary);
+        	}
+        	if((sales >= '26') && (sales <= '49'))
+        	{
+        		commission = sales * 50;
+        		console.log('between 26 and 49 - 50 per sale');
+        		console.log('no basic salary');
+        	}
+        }
+        
+        if(x == "Cfl")
+        {
+            sales = document.getElementById("_sales").value;
+            if(sales == "")
+        	{
+        		alert("Enter number of sales.");
+        		$( "#_sales" ).focus();
+        	}
+        	if(sales == 181)
+        	{
+        		basic_salary = parseFloat('2500').toFixed(2);
+        		console.log("qualifies for basic salary - " + basic_salary);
+        		$( "#basic_salary" ).val(basic_salary);
+        	}
+        	if(sales < 181)
+        	{
+        		basic_salary = parseFloat(sales * 10).toFixed(2);
+        		console.log("do not qualify for basic salary - " + basic_salary);
+        		$( "#basic_salary" ).val(basic_salary);
+        	}
+        	if((sales >= 200) && (sales < 300))
+        	{
+        		basic_salary = parseFloat('2500').toFixed(2);
+        		commission =  parseFloat(per1 * sales).toFixed(2);
+        		console.log("commission for 200 sales - " + commission);
+        		$( "#commission" ).val(commission);
+        		$( "#basic_salary" ).val(basic_salary);
+        	}
+        	if((sales >= 300) && (sales < 400))
+        	{
+        		basic_salary = parseFloat('2500').toFixed(2);
+        		commission =  parseFloat(per2 * sales).toFixed(2);
+        		console.log("commission for 300 sales - " + commission);
+        		
+        		$( "#commission" ).val(commission);
+        		$( "#basic_salary" ).val(basic_salary);
+        	}
+        	if(sales >= 400)
+        	{
+        		basic_salary = parseFloat('2500').toFixed(2);
+        		commission =  parseFloat(per3 * sales).toFixed(2);
+        		console.log("commission for 400 sales - " + commission);    
+        		
+        		$( "#commission" ).val(commission);
+        		$( "#basic_salary" ).val(basic_salary);
+        	}
+        }
+        
+        if(x == "Santam")
+        {
+            sales = document.getElementById("_sales").value;
+            if(sales == "")
+        	{
+        		alert("Enter number of sales.");
+        		$( "#_sales" ).focus();
+        	}
+        	commission = sales  * 20;
+    		console.log("commission(santam) - " + commission); 
+    		$( "#commission" ).val(commission);
+        }
+        if(x == "ImaliSave")
+        {
+            sales = document.getElementById("_sales").value;
+            if(sales == "")
+        	{
+        		alert("Enter number of sales.");
+        		$( "#_sales" ).focus();
+        	}
+        }	
+        
+        if(x == "ImaliSave")	
+        {
+            sales = document.getElementById("_sales").value;
+    		basic_salary = parseFloat('2500').toFixed(2);
+
+            if(sales < 10)
+            {
+            	console.log('less than  10..');	
+            }
+        	if(sales == 10)
+        	{
+        		basic_salary = parseFloat('2500').toFixed(2);
+        		console.log('qualify for basic - ' + basic_salary);
+        	}	
+        	if((sales >= 11) && (sales <= 20))
+        	{
+        		basic_salary = parseFloat('2500').toFixed(2);
+        		commission = sales * 80;
+        		console.log("commission - " + commission);
+        		
+        		$( "#commission" ).val(commission);
+        		$( "#basic_salary" ).val(basic_salary);
+        	}
+        	if((sales >=21) && (sales <= 24))
+        	{
+        		basic_salary = parseFloat('2500').toFixed(2);
+        		commission = sales * 100;
+        		
+        		$( "#commission" ).val(commission);
+        		$( "#basic_salary" ).val(basic_salary);
+        	}	
+            if((sales >= 25))
+            {
+            	basic_salary = parseFloat('2500').toFixed(2);
+        		commission = sales * 120;
+        		
+        		$( "#commission" ).val(commission);
+        		$( "#basic_salary" ).val(basic_salary);
+            }
+        }
+	}
+</script>
 </html>

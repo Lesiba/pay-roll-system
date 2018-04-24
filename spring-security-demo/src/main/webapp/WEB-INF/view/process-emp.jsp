@@ -267,18 +267,25 @@
 			</form:form>
 			<sql:setDataSource var="snapshot" driver="com.mysql.jdbc.Driver"
 				url="jdbc:mysql://localhost/project_payroll" user="root" password="" />
-
+<%
+				String hidden = request.getParameter("empId");
+			%>
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-3">
 						<div class="text-center" style="width: 12px;">
-							<a href="${pageContext.request.contextPath}/home"><button
+							<a href="${pageContext.request.contextPath}/showEmployee?empID=<%=hidden%>""><button
 									type="submit" class="btn btn-info btn-fill btn-wd">Back</button></a>
 						</div>
 					</div>
 				</div>
 			</div>
-
+            
+            <sql:query dataSource="${snapshot}" var="campaignResult">
+                SELECT name,surname,address,empId,IDNumber FROM hresources.employees WHERE empID= <%=hidden%>;
+            </sql:query>
+            
+        
 			<div class="content">
 				<div class="container-fluid">
 					<div class="row">
@@ -301,24 +308,30 @@
 									</div>
 									<div class="details">
 										<div class="content">
+										  <c:forEach var="row" items="${campaignResult.rows}" begin="0" end="${not empty list?(fn:length(list)-1):0}">
+										
 											<div class="left-panel">
 												<div class="entry">
 													<div class="value">Employee Name:</div>
-													<div class="value">Alice Modiba</div>
+													<div class="value"><c:out value="${row.name}" /> <c:out value="${row.surname}" /></div>
 												</div>
 												<div class="entry">
 													<div class="value">Employee Address:</div>
-													<div class="value">145 CRESTHILL MANSIONS, 15 PETERSON STREET ,HILLBROW, 2001</div>
+													<div class="value">
+													   <c:out value="${row.address}" />
+													</div>
 												</div>
 												<div class="entry">
 													<div class="value">Employee ID:</div>
-													<div class="value">900505-6411-085</div>
+													<div class="value"><c:out value="${row.IDNumber}" /></div>
 												</div>
 												<div class="entry">
 													<div class="value">Employee tax no:</div>
 													<div class="value">-</div>
 												</div>
 											</div>
+									
+											
 											<div class="right-panel">
 												<div class="entry">
 													<div class="value">Engagement Date:</div>
@@ -334,11 +347,12 @@
 												</div>
 												<div class="entry">
 													<div class="value">Employee Number:</div>
-													<div class="value">70797</div>
+													<div class="value"><c:out value="${row.empId}" /></div>
 												</div>
 											</div>
 										</div>
 									</div>
+									</c:forEach>
 									<div id="scope">
 										<div class="scope-entry">
 											<div class="title">Earnings</div>
@@ -352,11 +366,11 @@
 											<div class="left-panel">
 												<div class="entry">
 													<div class="value">Basic salary:</div>
-													<div class="value">2500,00</div>
+													<div class="value">${employee.basicSalary}</div>
 												</div>
 												<div class="entry">
 													<div class="value">Commission:</div>
-													<div class="value">992,35</div>
+													<div class="value">${employee.commission}</div>
 												</div>
 												<div class="entry">
 													<div class="value">Stipend:</div>
@@ -373,7 +387,7 @@
 												<div class="entry"></div>
 												<div class="entry">
 													<div class="value">Total Earnings:</div>
-													<div class="value">3 492,35</div>
+													<div class="value"><c:out value="${employee.commission + employee.basicSalary}" /></div>
 												</div>
 											</div>
 											<div class="right-panel">
@@ -381,15 +395,15 @@
 
 													<div class="entry">
 														<div class="value">P.A.Y.E.</div>
-														<div class="value">0</div>
+														<div class="value">${employee.payePlus}</div>
 													</div>
 													<div class="entry">
 														<div class="value">U.I.F:</div>
-														<div class="value">25,00</div>
+														<div class="value">${employee.uif}</div>
 													</div>
 													<div class="entry">
 														<div class="value">Unpaid Leave:</div>
-														<div class="value">113,64</div>
+														<div class="value">${employee.commission}</div>
 													</div>
 													<div class="entry"></div>
 													<div class="entry"></div>
@@ -418,7 +432,7 @@
 										<div class="net_pay">
 											<div class="entry">
 												<div class="label" style="color: black;">NET Salary</div>
-												<div class="value">69,656.21</div>
+												<div class="value">${employee.netSalary}</div>
 											</div>
 										</div>
 										<div class="content">
