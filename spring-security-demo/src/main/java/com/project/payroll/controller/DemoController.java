@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
 import com.project.payroll.pojo.Employee;
+import com.project.payroll.test.MailMail;
 
 @Controller
 public class DemoController {
@@ -72,27 +75,16 @@ public class DemoController {
 		}
 	}
    
-   
-   @RequestMapping(value = "/generate-pdf", method = RequestMethod.GET)
-   public ModelAndView empListReport(HttpServletRequest req, HttpServletResponse res) 
-   {
-	   String typeReport = req.getParameter("type");
+   	
+   @GetMapping("/send-email")
+   public String saveAs() {
 	   
-	   List<Employee> list = new ArrayList<Employee>();
-	   
-	   Employee emp = new Employee();
-	   
-	   emp.setSales(100);
-	   emp.setCommission(1200);
-	   
-	   list.add(emp);
-	   
-	   if(typeReport != null && typeReport.equals("pdf"))
-	   {
-		   //new PDFBuilder();
-		   return new ModelAndView("generate-pdf","command",list);
-	   }
-	   return new ModelAndView("","generate-pdf",list);
+	   ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Mail.xml");
+  	 
+   	   MailMail mm = (MailMail) context.getBean("mailMail");
+       mm.sendMail("Yong Mook Kim", "This is text content");
+       System.out.println("message sent....");
+	   return "send-email";	
    }
-
+   
 }

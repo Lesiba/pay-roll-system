@@ -439,9 +439,9 @@
 											<div class="footer">
 
 												<div class="stats">
-													<button type="submit" class="btn btn-info btn-fill btn-wd"
-														id="cmd">Save As</button>
-													<button type="submit" class="btn btn-info btn-fill btn-wd">Email</button>
+												
+												   <button type="submit" class="btn btn-info btn-fill btn-wd" id = "btnTest">Save As</button>
+												    <a href="${pageContext.request.contextPath}/send-email" class="btn btn-info btn-fill btn-wd">email</a>
 												</div>
 											</div>
 										</div>
@@ -449,7 +449,10 @@
 								</div>
 							</div>
 						</div>
-
+                        
+                        
+                        <div id="editor"></div>
+                        
 						<footer class="footer">
 							<div class="container-fluid">
 								<nav class="pull-left">
@@ -475,6 +478,10 @@
 
 					</div>
 				</div>
+				</div>
+				
+				
+
 </body>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -496,22 +503,10 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/0.9.0rc1/jspdf.min.js"></script>
 <script>
-	$(document).ready(function() {
-		var doc = new jsPDF();
-		var specialElementHandlers = {
-			'#editor' : function(element, renderer) {
-				return true;
-			}
-		};
-
-		$('#cmd').click(function() {
-			doc.fromHTML($('#content').html(), 15, 15, {
-				'width' : 170,
-				'elementHandlers' : specialElementHandlers
-			});
-			doc.save('sample-file.pdf');
-		});
-	});
+	
+   $("#btnTest").click(function(){
+	   alert('test btn');
+   });
 </script>
 
 
