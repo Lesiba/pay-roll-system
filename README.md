@@ -1,4 +1,4 @@
-# cycle: Pay-roll System for Icon-Africa
+# :cyclone: Pay-roll System for Icon-Africa
 
 # About
 
